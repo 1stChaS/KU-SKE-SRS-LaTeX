@@ -2,4 +2,12 @@
 \label{chap:abstract}
 \addcontentsline{toc}{chapter}{\nameref{chap:abstract}}
 
-Put your abstract paragraph here.
+Unmanned Aerial Vehicle (UAV) systems are increasingly utilized in applications such as surveillance, logistics, and defense, leading to a growing demand for effective pilot training solutions. However, learning to perform flight planning using tools is often difficult for beginners due to its complexity and lack of guided learning support, resulting in a steep learning curve and inefficient self-training.
+
+Existing UAV training approaches commonly rely on standalone simulation environments which do not provide adaptive feedback based on user behavior. While simulation tools can replicate real-world flight conditions, they lack intelligent systems to analyze user performance and personalize the learning experience. Additionally, most systems do not incorporate gamification elements that can improve user engagement and motivation.
+
+Aerotrail proposes a gamified UAV training system that integrates flight planning, simulation, and intelligent behavior analysis. In the proposed system, QGroundControl is used for mission and flight path planning, while ArduPilot SITL provides realistic drone and terrain simulation. The simulation is integrated into Unity to create an interactive and engaging training environment. The system incorporates a hybrid machine learning approach using K-Means clustering to discover user behavior patterns and Random Forest classification to categorize users into skill levels such as beginner, intermediate, and expert. Behavioral features are extracted from UAV telemetry data, including trajectory deviation, control smoothness, and flight stability.
+
+The proposed solution is evaluated using a real-world UAV telemetry dataset, where the machine learning models are trained and tested to assess their effectiveness in classifying user behavior. The results indicate that the system can successfully differentiate between user skill levels and provide meaningful performance insights, enabling adaptive training and enhancing the overall learning experience.
+
+Keywords: Unmanned Aerial Vehicle (UAV), Flight Planning Training, QGroundControl, ArduPilot SITL, Unity, Behavior Classification, K-Means Clustering, Random Forest

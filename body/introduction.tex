@@ -4,80 +4,77 @@
 \section{Background}
 \label{section:background}
 
-<TIP: 
-A background chapter in a book serves the purpose of providing essential context, information, or history that is relevant
-to the overall understanding of the book's subject matter. This chapter typically appears early in the book and aims to set the
-stage for the reader by offering background details that are crucial for comprehending the main narrative.
-/>
+Unmanned Aerial Vehicles (UAVs) are increasingly utilized in various domains such as surveillance, logistics, agriculture, and disaster management. As the adoption of UAV technology continues to expand, the demand for effective training systems that enable users to develop flight planning skills has become more critical. Flight planning is a fundamental aspect of UAV operation, involving the definition of waypoints, navigation paths, altitude, and mission parameters to ensure safe and efficient operation.
+
+Existing tools such as QGroundControl provide comprehensive mission planning capabilities, while ArduPilot Software-in-the-Loop (SITL) enables realistic simulation of UAV behavior without requiring physical hardware. However, these tools are primarily designed for experienced users and can be challenging for beginners to learn due to their complexity and lack of guided learning support.
+
+Furthermore, traditional UAV training systems do not incorporate intelligent mechanisms to analyze user behavior or provide personalized feedback. As a result, learners often struggle to identify their weaknesses and improve their skills efficiently. Recent advancements in artificial intelligence (AI) and gamification technologies present an opportunity to enhance UAV training systems by making them more adaptive, engaging, and user-centered. Integrating AI-driven behavior analysis with simulation platforms and gamified environments can significantly improve the learning experience for beginner drone pilots.
+
 
 \section{Problem Statement}
 \label{section:problem-statement}
 
-<TIP: 
-A problem statement refers to a clear central issue,
-challenge, or question that the project aims to address or explore. It is a
-declaration that highlights the specific problem the author intends to examine,
-discuss, or solve throughout the course of the project.
-/>
+Despite the availability of advanced UAV simulation and mission planning tools, beginner users face several challenges when learning how to plan drone missions effectively. The complexity of existing systems, combined with the lack of structured guidance, makes it difficult for users to understand proper flight planning techniques.
+
+In addition, current training approaches do not utilize user interaction and telemetry data to analyze learning behavior or assess skill levels. Consequently, all users are exposed to the same training scenarios regardless of their individual capabilities, leading to inefficient learning and reduced engagement.
+
+Another limitation is the absence of fair performance comparison mechanisms. Since training environments may vary in difficulty, traditional leaderboard systems cannot accurately reflect user performance across different conditions.
+
+Therefore, there is a need for an intelligent UAV training system that can:
+
+\begin{itemize}
+    \item Analyze user behavior during flight planning and simulation.
+    \item Classify users into different skill levels using machine learning.
+    \item Adapt training scenarios based on individual user performance.
+    \item Provide meaningful and personalized feedback.
+    \item Ensure fair performance comparison through a difficulty-normalized leaderboard.
+    \item Enhance user motivation through gamification.
+\end{itemize}
 
 \section{Solution Overview}
 \label{section:solution-overview}
 
-<TIP: 
-A software solution overview provides a high-level and
-concise description of a software product or system. It serves as an
-introduction to the software, offering a glimpse into its key features,
-functionalities, and the problems it aims to address. This overview is often
-presented in documentation, marketing materials, or other communication
-channels to give stakeholders, potential users, or decision-makers a quick
-understanding of what the software does and why it is valuable.
-/>
+This project proposes an AI-driven UAV training system that integrates mission planning, simulation, machine learning, and gamification into a unified learning platform. The system focuses on helping beginner users learn how to plan UAV flight missions effectively through guided interaction and adaptive training.
+
+Users interact with QGroundControl to learn and practice flight planning by defining waypoints, altitude, and navigation paths. The planned missions are then executed in a simulated environment using ArduPilot SITL, allowing users to observe the outcomes of their planning decisions in a safe and controlled setting. A gamified interface developed in Unity enhances visualization and engagement by presenting the simulation in an interactive environment.
+
+During simulation, the system collects telemetry and user interaction data, including flight trajectory, velocity, and control behavior. Machine learning techniques are applied to analyze this data, K-Means clustering is used to identify patterns in user behavior, and Random Forest classification is used to categorize users into different skill levels.
+
+Based on the classification results, the system dynamically generates adaptive training scenarios with varying levels of difficulty. In addition, a difficulty-normalized leaderboard is introduced to ensure fair comparison of user performance across different training conditions, enabling users to compete and track progress meaningfully.
 
 \subsection{Features}
 \label{subsection:features}
 
-\begin{enumerate}[leftmargin=80pt]
-    \item Feature Name: Short Description of Feature
-    \item Feature Name: Short Description of Feature
-\end{enumerate}
+\begin{itemize}
+    \item \textbf{Guided Flight Planning Training:} Users learn how to plan UAV missions using QGroundControl, including waypoint definition, altitude setting, and route design.
+    \item \textbf{UAV Simulation Environment:} Missions are executed using ArduPilot SITL to simulate realistic UAV behavior without requiring physical drones.
+    \item \textbf{Gamified Visualization Interface:} A Unity-based interface provides interactive visualization and game-like elements to improve engagement and motivation.
+    \item \textbf{User Behavior Data Collection:} The system collects telemetry data such as position, velocity, trajectory deviation, and control inputs during simulation.
+    \item \textbf{Behavior Analysis and Classification:} Machine learning models are used to analyze user behavior, where K-Means clustering identifies behavior patterns and Random Forest classifies user skill levels.
+    \item \textbf{Adaptive Training Generation:} Training scenarios are dynamically adjusted based on user skill level to provide appropriate difficulty and learning progression.
+    \item \textbf{Difficulty-Normalized Leaderboard:} A leaderboard system normalizes performance scores based on task difficulty to ensure fair comparison among users.
+    \item \textbf{Personalized Feedback System:} Users receive feedback on performance metrics such as flight stability, trajectory accuracy, and mission efficiency.
+\end{itemize}
 
 \section{Target User}
 \label{section:target-user}
 
-<TIP: 
-The target user in a software project refers to the specific
-group or demographic of individuals for whom the software is designed and
-developed. Identifying the target user is a crucial step in the software
-development process as it helps the development team tailor the software to
-meet the needs, preferences, and requirements of that particular user group.
-Understanding the characteristics, behaviors, and expectations of the target
-users is essential for creating a user-friendly and effective software solution.
+\begin{itemize}
+    \item \textbf{Beginner drone pilots:} Individuals with little or no prior experience who require a structured and safe learning environment.
+\end{itemize}
 
-Here are some key aspects related to defining the target user in a software project:
-
-Demographics: This includes factors such as age, gender,
-occupation, education level, and other demographic characteristics. Different
-age groups or professional backgrounds may have distinct preferences and
-requirements when it comes to software usability.
-
-Skill Level: Consideration of the users' technical proficiency and
-familiarity with similar software or technology. The level of technical expertise
-can influence the complexity of the user interface, the need for tutorials or
-documentation, and other user support features.
-
-Industry or Domain: For software solutions designed for specific
-industries or domains, understanding the unique challenges, workflows, and
-terminology within that industry is crucial. Tailoring the software to meet
-industry-specific needs is often necessary.
-/>
+The system focuses primarily on beginner users, providing guided learning, adaptive difficulty, and clear feedback to support skill development.
 
 \section{Terminology}
 \label{section:terminology}
 
-<TIP: 
-Terminology refers to the specific language, jargon, or
-specialized vocabulary used to describe concepts, ideas, or subjects within a
-particular field or domain. The use of terminology is often essential for clarity
-and precision, especially in books that cover technical, scientific, academic, or
-specialized topics.
-/>
+\begin{description}
+    \item[Unmanned Aerial Vehicle (UAV)] An aircraft that operates without an onboard human pilot.
+    \item[ArduPilot SITL] A simulation framework that enables drone control software to run without physical hardware.
+    \item[QGroundControl] A ground control station software used for planning and managing drone missions.
+    \item[Unity] A cross-platform game engine used to develop the simulation environment.
+    \item[MAVLink] A lightweight communication protocol used for drone control and telemetry exchange.
+    \item[K-Means Clustering] An unsupervised machine learning algorithm used to group similar data points based on behavior patterns.
+    \item[Random Forest] A supervised machine learning algorithm used for classification based on multiple decision trees.
+    \item[Difficulty-Normalized Leaderboard] A ranking system that adjusts scores based on task difficulty to ensure fair comparison among users.
+\end{description}

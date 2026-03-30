@@ -3,40 +3,142 @@
 
 \section{System Architecture Overview}
 \label{section:architecture-overview}
-<TIP: Provide a high-level description of your system's structure.
-Include either a Domain Model (to describe core business concepts
-and their relationships)
-or a Design Class Diagram (to describe how your code is organized
-into classes and packages),
-whichever best communicates your design.
-Accompany your diagram with a short paragraph explaining the key
-components and how they interact. />
+The proposed system is designed as an integrated UAV training platform that combines flight planning, simulation, gamification, and AI-based behavior analysis. The architecture consists of four main components: flight planning, simulation, data processing, and visualization.
+
+The flight planning component is implemented using QGroundControl, which allows users to define waypoints and mission parameters. The simulation component is powered by ArduPilot SITL, which executes the planned missions and generates telemetry data such as position, velocity, and control inputs. The visualization and interaction layer is developed using Unity, which provides a gamified interface for users to observe and interact with the simulation.
+
+The AI module processes telemetry data to extract behavioral features and performs user behavior classification. The system architecture follows a data-driven pipeline where user actions are transformed into meaningful insights.
+
+System Components Overview
+
+User Interface (Unity): Provides visualization and interaction
+Flight Planning Module (QGroundControl): Defines UAV missions
+Simulation Module (ArduPilot SITL): Executes missions and generates telemetry
+AI Module (Python): Performs clustering and classification
+Data Processing Module: Extracts features from telemetry
+
 
 \section{Software Design}
 \label{section:software-design}
-<TIP: Describe the runtime behavior of your system.
-Include a Sequence Diagram for your most important use cases.
-Focus on scenarios with non-trivial interactions between components.
-If your project involves a novel algorithm,
-describe it here and explain why you designed it this way. />
+
+The system operates through a sequence of interactions between the user, mission planning tool, simulation environment, and AI-driven backend system. The primary workflow represents a complete UAV training session, where the user learns flight planning, executes a simulation, and receives intelligent feedback along with adaptive training adjustments.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{examples/drone_sequence.png}
+    \caption{Sequence Diagram of Areotrail}
+\end{figure}
+
+Main Use Case: UAV Training Session
+
+The training session begins when the user accesses the system through the Unity-based interface, which provides a gamified environment and displays the training objectives. The user then interacts with QGroundControl to create a flight plan by defining waypoints, altitude, and navigation paths. This process focuses on helping beginner users learn how to properly plan UAV missions.
+
+Once the flight plan is completed, it is sent to the AI backend system and forwarded to ArduPilot SITL for execution. The simulation is initialized and visualized within the Unity interface. When the user starts the simulation, the 
+UAV mission is executed in real time, and telemetry data such as position, velocity, trajectory, and control inputs are continuously generated.
+
+The telemetry data is transmitted to the AI backend system, where it is collected, stored, and preprocessed. Feature extraction is then performed to derive meaningful indicators such as trajectory deviation, flight stability, and control smoothness. These features are used as input for the AI module.
+
+The AI backend performs behavior analysis using a hybrid machine learning approach. First, K-Means clustering is applied to group similar user behavior patterns without requiring labeled data. Then, Random Forest classification is used to assign the user to a specific skill level, such as beginner, intermediate, or advanced.
+
+Based on the classification results, the system generates adaptive training scenarios by adjusting the difficulty of the environment, such as terrain complexity or mission constraints. In addition, the system evaluates user performance and applies a difficulty-normalization process to compute a fair score. This score is used in the leaderboard to ensure that users are compared fairly despite differences in training conditions.
+
+Finally, the AI backend system sends the results back to the Unity interface, where the user is presented with performance feedback, skill level classification, adaptive training recommendations, and leaderboard ranking. This feedback loop enables continuous learning and improvement.
 
 \section{AI and Data Design}
 \label{section:ai-data-design}
-
 \subsection{Data Sources and Collection}
-<TIP: Describe where your data comes from. Is it collected from users,
-scraped from the web, sourced from a public dataset, or
-provided by an external API?
-Explain how much data you have or plan to collect,
-and any challenges you anticipate in obtaining it.
-Explain how data is cleaned, transformed, or prepared before use. />
+
+The primary dataset used in this project is the \textit{Fixed-Wing UAS Telemetry Benchmark (IDF\_DS)}, which contains telemetry data collected from 240 UAV flights. This dataset provides comprehensive flight information that captures both UAV motion and control behavior. The dataset includes the following key attributes:
+
+\begin{itemize}
+    \item Position data (navPos)
+    \item Velocity data (navVel)
+    \item Control inputs (rcCommand)
+    \item Attitude measurements (roll, pitch, yaw)
+\end{itemize}
+
+In addition to the external dataset, the system also generates telemetry data from simulation runs using ArduPilot SITL. During each simulated mission, flight parameters such as position, velocity, altitude, and orientation are continuously recorded. This allows the system to collect dynamic data based on user interactions and training scenarios.
+
+Before being used in the AI module, the collected data undergoes several preprocessing steps to ensure data quality and consistency. Data preprocessing consists of the following stages:
+
+\begin{itemize}
+    \item \textbf{Data Cleaning:} Removal of irrelevant or noisy attributes, such as system flags and non-essential environmental variables.
+    
+    \item \textbf{Feature Selection:} Retaining only behavior-relevant features, including position, velocity, control inputs, and attitude measurements.
+    
+    \item \textbf{Feature Engineering:} Transforming raw telemetry data into meaningful performance indicators, including: Trajectory deviation, Speed consistency, Control smoothness, Flight stability.
+    
+    \item \textbf{Normalization:} Scaling all features to a consistent range to improve model performance and prevent bias toward certain variables.
+\end{itemize}
+
 \subsection{Model Design}
-<TIP: Describe the AI model or external AI service you plan to use.
-Explain why you chose it over alternatives.
-This can connect back to your competitor or literature review in Chapter 2.
-If you are training your own model, describe the architecture and
-training approach. If you are using a third-party model or API,
-describe how it is integrated into your system and any prompt design
-or fine-tuning involved. />
+The system adopts a hybrid machine learning approach that combines both unsupervised and supervised learning techniques to analyze UAV flight behavior and evaluate user performance. This design is chosen to leverage the strengths of both approaches: unsupervised learning for discovering hidden patterns in flight data, and supervised learning for generating interpretable performance classifications.
+The AI module consists of two main components:
+
+\begin{itemize}
+    \item \textbf{K-Means Clustering}
+    K-Means clustering is applied to group UAV flight behaviors based on extracted features from telemetry data. This method enables the system to identify patterns without requiring predefined labels.
+    
+    \textbf{Purpose:}
+    Identify underlying flight behavior patterns
+    Group similar flight trajectories and control behaviors
+    Generate pseudo-labels for further supervised learning
+    
+    \textbf{Reason for Selection:}
+    Effective for handling unlabeled data
+    Computationally efficient and suitable for real-time or large-scale data
+    Well-suited for grouping behavior-based features in UAV flight analysis
+    \end{itemize}
+
+\begin{itemize}
+    \item \textbf{Random Forest Classification}
+    Random Forest is used as a supervised learning model to classify user performance based on the labeled data generated from the clustering process. The model outputs interpretable categories such as beginner, intermediate, and expert.
+    
+    \textbf{Purpose:}
+    Predict user skill level based on flight behavior
+    Provide structured and interpretable evaluation results
+    Support feedback generation for training improvement
+    
+    \textbf{Reason for Selection:}
+    High accuracy when working with structured (tabular) data
+    Robust to noise and less prone to overfitting
+    Provides reliable and interpretable results compared to more complex models
+\end{itemize}
+
+Training Process
+The training process integrates both clustering and classification to form a complete learning pipeline:
+Extract relevant features from the dataset and simulation data
+Apply K-Means clustering to group similar flight behaviors
+Assign cluster labels (e.g., Beginner, Intermediate, Expert) based on behavior characteristics
+Train the Random Forest model using the labeled dataset
+Validate model performance using evaluation metrics
+This approach allows the system to first discover behavior patterns and then use those patterns to train a predictive model for performance evaluation.
+
+Model Improvement and Handling Poor Performance
+To ensure the reliability and robustness of the AI module, several strategies are considered if model performance is not satisfactory:
+Adjust feature selection to improve the quality of input data
+Tune model hyperparameters, such as the number of trees in the Random Forest
+Modify the number of clusters in K-Means to better represent behavior patterns
+Compare performance with baseline models, such as Logistic Regression, to ensure effectiveness
+
+Integration within the System
+The AI models are integrated into the backend of the system as part of the evaluation pipeline. After each simulation, telemetry data is processed and passed through the AI module. The clustering component first analyzes behavior patterns, and the classification model then predicts user performance levels. The results are used to generate feedback and are presented to the user through the frontend interface.
+
 \subsection{Evaluation}
-<TIP: Describe the metrics you plan to use to evaluate your AI model. />
+
+\noindent \textbf{Classification Metrics:}
+\begin{itemize}
+    \setlength{\leftmargin}{1.5em}
+    \item \textbf{Accuracy:} Measures how correctly the model classifies pilot performance into categories (e.g., good, average, poor).
+    \item \textbf{Precision:} Evaluates how reliable the predicted performance labels are.
+    \item \textbf{Recall:} Measures the ability of the model to correctly identify all relevant performance cases.
+    \item \textbf{F1-score:} Provides a balanced measure between precision and recall.
+\end{itemize}
+
+\noindent \textbf{Clustering Metrics:}
+\begin{itemize}
+    \setlength{\leftmargin}{1.5em}
+    \item \textbf{Cluster Consistency:} Evaluates how similar the data points are within the same cluster.
+    \item \textbf{Cluster Separation:} Measures how distinct different clusters are from each other.
+    \item \textbf{Interpretability:} Assesses whether the identified clusters represent meaningful flight behaviors.
+\end{itemize}
