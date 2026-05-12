@@ -1,4 +1,13 @@
 ~\hfill \textbf {Page}\par \addvspace {.2in} \relax \fontsize {14.4}{17}\selectfont \abovedisplayskip 14\p@ plus3\p@ minus7\p@ \abovedisplayshortskip \z@ plus4\p@ \belowdisplayshortskip 7\p@ plus4\p@ minus3\p@ \belowdisplayskip \abovedisplayskip \let \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ 
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Competitive Landscape by Asana}}{4}{figure.2.1}%
-\contentsline {figure}{\numberline {3.1}{\ignorespaces User Interface Design}}{7}{figure.3.1}%
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Example technology stack}}{10}{figure.5.1}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Use Case Diagram for the Drone Training System}}{15}{figure.3.1}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Mockup of the homepage of the application}}{17}{figure.3.2}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Mockup of Mission Selection Page}}{17}{figure.3.3}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Mockup of Letter Page}}{18}{figure.3.4}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Mockup of Mission Briefing}}{18}{figure.3.5}%
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Mockup of Simulation Interface on Unity 3D}}{19}{figure.3.6}%
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Mockup of Simulation Interface on Unity 3D}}{19}{figure.3.7}%
+\contentsline {figure}{\numberline {3.8}{\ignorespaces Mockup of Feedback and Results Page}}{20}{figure.3.8}%
+\contentsline {figure}{\numberline {3.9}{\ignorespaces Mockup of Feedback and Results Page}}{20}{figure.3.9}%
+\contentsline {figure}{\numberline {3.10}{\ignorespaces Mockup of Feedback and Results Page}}{21}{figure.3.10}%
+\contentsline {figure}{\numberline {3.11}{\ignorespaces Mockup of Feedback and Results Page}}{21}{figure.3.11}%
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Gantt Chart}}{33}{figure.5.1}%

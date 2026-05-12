@@ -1,6 +1,6 @@
 PWD /Users/chasss/Desktop/Drone Trainning/KU-SKE-SRS-LaTeX
 INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/data/miktex/data/le/pdftex/pdflatex.fmt
-INPUT document.tex
+INPUT /Users/chasss/Desktop/Drone Trainning/KU-SKE-SRS-LaTeX/document.tex
 OUTPUT document.log
 INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/tex/latex/base/report.cls
 INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/tex/latex/base/report.cls
@@ -109,60 +109,17 @@ INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/tex/latex/
 INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/tex/latex/tools/indentfirst.sty
 INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/tex/latex/enumitem/enumitem.sty
 INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/tex/latex/enumitem/enumitem.sty
+INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/tex/latex/float/float.sty
+INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/tex/latex/float/float.sty
 INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/tex/latex/psnfss/t1ptm.fd
 INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/tex/latex/psnfss/t1ptm.fd
 INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/tex/latex/psnfss/t1ptm.fd
 INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/adobe/times/ptmr8t.tfm
 INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/tex/latex/l3backend/l3backend-pdftex.def
 INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/tex/latex/l3backend/l3backend-pdftex.def
-INPUT ./document.aux
-INPUT ./document.aux
-INPUT document.aux
-INPUT ./partials/cover.aux
-INPUT ./partials/cover.aux
-INPUT partials/cover.aux
-INPUT ./partials/innercover.aux
-INPUT ./partials/innercover.aux
-INPUT partials/innercover.aux
-INPUT ./body/abstract.aux
-INPUT ./body/abstract.aux
-INPUT body/abstract.aux
-INPUT ./body/acknowledgement.aux
-INPUT ./body/acknowledgement.aux
-INPUT body/acknowledgement.aux
-INPUT ./body/introduction.aux
-INPUT ./body/introduction.aux
-INPUT body/introduction.aux
-INPUT ./body/relatedworks.aux
-INPUT ./body/relatedworks.aux
-INPUT body/relatedworks.aux
-INPUT ./body/requirementanalysis.aux
-INPUT ./body/requirementanalysis.aux
-INPUT body/requirementanalysis.aux
-INPUT ./body/softwarearchitecture.aux
-INPUT ./body/softwarearchitecture.aux
-INPUT body/softwarearchitecture.aux
-INPUT ./body/softwaredevelopment.aux
-INPUT ./body/softwaredevelopment.aux
-INPUT body/softwaredevelopment.aux
-INPUT ./body/deliverable.aux
-INPUT ./body/deliverable.aux
-INPUT body/deliverable.aux
-INPUT ./body/discussion.aux
-INPUT ./body/discussion.aux
-INPUT body/discussion.aux
-INPUT ./body/appendices.aux
-INPUT ./body/appendices.aux
-INPUT body/appendices.aux
 OUTPUT document.aux
-INPUT ./document.out
-INPUT ./document.out
-INPUT document.out
-INPUT document.out
-OUTPUT document.pdf
-INPUT ./document.out
-INPUT ./document.out
 OUTPUT document.out
+OUTPUT document.pdf
 INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/tex/latex/microtype/mt-ptm.cfg
 INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/tex/latex/microtype/mt-ptm.cfg
 INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/tex/latex/microtype/mt-ptm.cfg
@@ -263,24 +220,8 @@ OUTPUT body/acknowledgement.aux
 INPUT ./body/acknowledgement.tex
 INPUT ./body/acknowledgement.tex
 INPUT body/acknowledgement.tex
-INPUT ./document.toc
-INPUT ./document.toc
-INPUT document.toc
-INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/adobe/times/ptmr8t.tfm
-INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/adobe/times/ptmb8t.tfm
-INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/vf/adobe/times/ptmb8t.vf
-INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/adobe/times/ptmb8r.tfm
-INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/adobe/times/ptmb8t.tfm
 OUTPUT document.toc
-INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/vf/adobe/times/ptmb8t.vf
-INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/adobe/times/ptmb8r.tfm
-INPUT ./document.lot
-INPUT ./document.lot
-INPUT document.lot
 OUTPUT document.lot
-INPUT ./document.lof
-INPUT ./document.lof
-INPUT document.lof
 OUTPUT document.lof
 INPUT ./body/introduction.tex
 INPUT ./body/introduction.tex
@@ -288,48 +229,142 @@ OUTPUT body/introduction.aux
 INPUT ./body/introduction.tex
 INPUT ./body/introduction.tex
 INPUT body/introduction.tex
+INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/adobe/times/ptmb8t.tfm
+INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/adobe/times/ptmr8t.tfm
+INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/vf/adobe/times/ptmb8t.vf
+INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/adobe/times/ptmb8r.tfm
+INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/tex/latex/psnfss/ts1ptm.fd
+INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/tex/latex/psnfss/ts1ptm.fd
+INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/tex/latex/psnfss/ts1ptm.fd
+INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/adobe/times/ptmr8c.tfm
+INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/vf/adobe/times/ptmr8c.vf
 INPUT ./body/relatedworks.tex
 INPUT ./body/relatedworks.tex
 OUTPUT body/relatedworks.aux
 INPUT ./body/relatedworks.tex
 INPUT ./body/relatedworks.tex
 INPUT body/relatedworks.tex
-INPUT ./assets/examples/asana-competitive-landscape.jpg
-INPUT ./assets/examples/asana-competitive-landscape.jpg
-INPUT ./assets/examples/asana-competitive-landscape.jpg
-INPUT ./assets/examples/asana-competitive-landscape.jpg
-INPUT ./assets/examples/asana-competitive-landscape.jpg
-INPUT ./assets/examples/asana-competitive-landscape.jpg
+INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/adobe/times/ptmr8t.tfm
+INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/adobe/times/zptmcm7t.tfm
+INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/adobe/times/zptmcm7t.tfm
+INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/adobe/times/zptmcm7t.tfm
+INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/adobe/times/zptmcm7m.tfm
+INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/adobe/times/zptmcm7m.tfm
+INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/adobe/times/zptmcm7m.tfm
+INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/adobe/times/zptmcm7y.tfm
+INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/adobe/times/zptmcm7y.tfm
+INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/adobe/times/zptmcm7y.tfm
+INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/adobe/times/zptmcm7v.tfm
+INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/adobe/times/zptmcm7v.tfm
+INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/adobe/times/zptmcm7v.tfm
+INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/adobe/times/ptmb7t.tfm
+INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/adobe/times/ptmb7t.tfm
+INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/adobe/times/ptmb7t.tfm
+INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/adobe/times/ptmri7t.tfm
+INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/adobe/times/ptmri7t.tfm
+INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/adobe/times/ptmri7t.tfm
+INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/adobe/times/ptmb8t.tfm
+INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/vf/adobe/times/ptmb8t.vf
+INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/adobe/times/ptmb8r.tfm
+INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/vf/adobe/times/ptmr8t.vf
+INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/adobe/times/ptmr8r.tfm
 INPUT ./body/requirementanalysis.tex
 INPUT ./body/requirementanalysis.tex
 OUTPUT body/requirementanalysis.aux
 INPUT ./body/requirementanalysis.tex
 INPUT ./body/requirementanalysis.tex
 INPUT body/requirementanalysis.tex
-INPUT ./assets/examples/user-interface-design.png
-INPUT ./assets/examples/user-interface-design.png
-INPUT ./assets/examples/user-interface-design.png
-INPUT ./assets/examples/user-interface-design.png
-INPUT ./assets/examples/user-interface-design.png
-INPUT ./assets/examples/user-interface-design.png
+INPUT ./assets/examples/uml.png
+INPUT ./assets/examples/uml.png
+INPUT ./assets/examples/uml.png
+INPUT ./assets/examples/uml.png
+INPUT ./assets/examples/uml.png
+INPUT ./assets/examples/uml.png
+INPUT ./assets/examples/home_page_new.png
+INPUT ./assets/examples/home_page_new.png
+INPUT ./assets/examples/home_page_new.png
+INPUT ./assets/examples/home_page_new.png
+INPUT ./assets/examples/home_page_new.png
+INPUT ./assets/examples/home_page_new.png
+INPUT ./assets/examples/start_page.png
+INPUT ./assets/examples/start_page.png
+INPUT ./assets/examples/start_page.png
+INPUT ./assets/examples/start_page.png
+INPUT ./assets/examples/start_page.png
+INPUT ./assets/examples/start_page.png
+INPUT ./assets/examples/letter.png
+INPUT ./assets/examples/letter.png
+INPUT ./assets/examples/letter.png
+INPUT ./assets/examples/letter.png
+INPUT ./assets/examples/letter.png
+INPUT ./assets/examples/letter.png
+INPUT ./assets/examples/request.png
+INPUT ./assets/examples/request.png
+INPUT ./assets/examples/request.png
+INPUT ./assets/examples/request.png
+INPUT ./assets/examples/request.png
+INPUT ./assets/examples/request.png
+INPUT ./assets/examples/playing_game1.png
+INPUT ./assets/examples/playing_game1.png
+INPUT ./assets/examples/playing_game1.png
+INPUT ./assets/examples/playing_game1.png
+INPUT ./assets/examples/playing_game1.png
+INPUT ./assets/examples/playing_game1.png
+INPUT ./assets/examples/playing_game2.png
+INPUT ./assets/examples/playing_game2.png
+INPUT ./assets/examples/playing_game2.png
+INPUT ./assets/examples/playing_game2.png
+INPUT ./assets/examples/playing_game2.png
+INPUT ./assets/examples/playing_game2.png
+INPUT ./assets/examples/report.png
+INPUT ./assets/examples/report.png
+INPUT ./assets/examples/report.png
+INPUT ./assets/examples/report.png
+INPUT ./assets/examples/report.png
+INPUT ./assets/examples/report.png
+INPUT ./assets/examples/report_2.png
+INPUT ./assets/examples/report_2.png
+INPUT ./assets/examples/report_2.png
+INPUT ./assets/examples/report_2.png
+INPUT ./assets/examples/report_2.png
+INPUT ./assets/examples/report_2.png
+INPUT ./assets/examples/report_3.png
+INPUT ./assets/examples/report_3.png
+INPUT ./assets/examples/report_3.png
+INPUT ./assets/examples/report_3.png
+INPUT ./assets/examples/report_3.png
+INPUT ./assets/examples/report_3.png
+INPUT ./assets/examples/report_4.png
+INPUT ./assets/examples/report_4.png
+INPUT ./assets/examples/report_4.png
+INPUT ./assets/examples/report_4.png
+INPUT ./assets/examples/report_4.png
+INPUT ./assets/examples/report_4.png
 INPUT ./body/softwarearchitecture.tex
 INPUT ./body/softwarearchitecture.tex
 OUTPUT body/softwarearchitecture.aux
 INPUT ./body/softwarearchitecture.tex
 INPUT ./body/softwarearchitecture.tex
 INPUT body/softwarearchitecture.tex
+INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/vf/adobe/times/zptmcm7t.vf
+INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/adobe/symbol/psyr.tfm
+INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/cm/cmr10.tfm
+INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/vf/adobe/times/zptmcm7m.vf
+INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/adobe/times/psyro.tfm
+INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/cm/cmmi10.tfm
+INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/adobe/times/ptmri8r.tfm
 INPUT ./body/softwaredevelopment.tex
 INPUT ./body/softwaredevelopment.tex
 OUTPUT body/softwaredevelopment.aux
 INPUT ./body/softwaredevelopment.tex
 INPUT ./body/softwaredevelopment.tex
 INPUT body/softwaredevelopment.tex
-INPUT ./assets/examples/tech-stack.png
-INPUT ./assets/examples/tech-stack.png
-INPUT ./assets/examples/tech-stack.png
-INPUT ./assets/examples/tech-stack.png
-INPUT ./assets/examples/tech-stack.png
-INPUT ./assets/examples/tech-stack.png
+INPUT ./assets/examples/Gantt chart.png
+INPUT ./assets/examples/Gantt chart.png
+INPUT ./assets/examples/Gantt chart.png
+INPUT ./assets/examples/Gantt chart.png
+INPUT ./assets/examples/Gantt chart.png
+INPUT ./assets/examples/Gantt chart.png
 INPUT ./body/deliverable.tex
 INPUT ./body/deliverable.tex
 OUTPUT body/deliverable.aux
@@ -360,16 +395,10 @@ INPUT ./body/appendices.tex
 INPUT body/appendices.tex
 INPUT common/onetextpage.tex
 INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/adobe/times/zptmcm7t.tfm
-INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/adobe/times/zptmcm7t.tfm
-INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/adobe/times/zptmcm7m.tfm
 INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/adobe/times/zptmcm7m.tfm
 INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/adobe/times/zptmcm7y.tfm
-INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/adobe/times/zptmcm7y.tfm
-INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/adobe/times/zptmcm7v.tfm
 INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/adobe/times/zptmcm7v.tfm
 INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/adobe/times/ptmb7t.tfm
-INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/adobe/times/ptmb7t.tfm
-INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/adobe/times/ptmri7t.tfm
 INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/adobe/times/ptmri7t.tfm
 INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/adobe/times/ptmr8t.tfm
 INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/vf/adobe/times/ptmr8t.vf
@@ -414,7 +443,13 @@ INPUT body/appendices.aux
 INPUT ./document.out
 INPUT ./document.out
 INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/enc/dvips/base/8r.enc
+INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi10.pfb
+INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi10.pfb
+INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmr10.pfb
+INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmr10.pfb
 INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/urw/times/utmb8a.pfb
 INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/urw/times/utmb8a.pfb
 INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/urw/times/utmr8a.pfb
 INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/urw/times/utmr8a.pfb
+INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/urw/times/utmri8a.pfb
+INPUT /Users/chasss/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/urw/times/utmri8a.pfb

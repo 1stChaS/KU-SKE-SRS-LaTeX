@@ -1,144 +1,197 @@
 \chapter{Software Architecture Design}
-\label{chap:software-architecture-design}
 
 \section{System Architecture Overview}
-\label{section:architecture-overview}
-The proposed system is designed as an integrated UAV training platform that combines flight planning, simulation, gamification, and AI-based behavior analysis. The architecture consists of four main components: flight planning, simulation, data processing, and visualization.
 
-The flight planning component is implemented using QGroundControl, which allows users to define waypoints and mission parameters. The simulation component is powered by ArduPilot SITL, which executes the planned missions and generates telemetry data such as position, velocity, and control inputs. The visualization and interaction layer is developed using Unity, which provides a gamified interface for users to observe and interact with the simulation.
-
-The AI module processes telemetry data to extract behavioral features and performs user behavior classification. The system architecture follows a data-driven pipeline where user actions are transformed into meaningful insights.
-
-System Components Overview
-
-User Interface (Unity): Provides visualization and interaction
-Flight Planning Module (QGroundControl): Defines UAV missions
-Simulation Module (ArduPilot SITL): Executes missions and generates telemetry
-AI Module (Python): Performs clustering and classification
-Data Processing Module: Extracts features from telemetry
-
-
-\section{Software Design}
-\label{section:software-design}
-
-The system operates through a sequence of interactions between the user, mission planning tool, simulation environment, and AI-driven backend system. The primary workflow represents a complete UAV training session, where the user learns flight planning, executes a simulation, and receives intelligent feedback along with adaptive training adjustments.
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.8\textwidth]{examples/drone_sequence.png}
-    \caption{Sequence Diagram of Areotrail}
-\end{figure}
-
-Main Use Case: UAV Training Session
-
-The training session begins when the user accesses the system through the Unity-based interface, which provides a gamified environment and displays the training objectives. The user then interacts with QGroundControl to create a flight plan by defining waypoints, altitude, and navigation paths. This process focuses on helping beginner users learn how to properly plan UAV missions.
-
-Once the flight plan is completed, it is sent to the AI backend system and forwarded to ArduPilot SITL for execution. The simulation is initialized and visualized within the Unity interface. When the user starts the simulation, the 
-UAV mission is executed in real time, and telemetry data such as position, velocity, trajectory, and control inputs are continuously generated.
-
-The telemetry data is transmitted to the AI backend system, where it is collected, stored, and preprocessed. Feature extraction is then performed to derive meaningful indicators such as trajectory deviation, flight stability, and control smoothness. These features are used as input for the AI module.
-
-The AI backend performs behavior analysis using a hybrid machine learning approach. First, K-Means clustering is applied to group similar user behavior patterns without requiring labeled data. Then, Random Forest classification is used to assign the user to a specific skill level, such as beginner, intermediate, or advanced.
-
-Based on the classification results, the system generates adaptive training scenarios by adjusting the difficulty of the environment, such as terrain complexity or mission constraints. In addition, the system evaluates user performance and applies a difficulty-normalization process to compute a fair score. This score is used in the leaderboard to ensure that users are compared fairly despite differences in training conditions.
-
-Finally, the AI backend system sends the results back to the Unity interface, where the user is presented with performance feedback, skill level classification, adaptive training recommendations, and leaderboard ranking. This feedback loop enables continuous learning and improvement.
-
-\section{AI and Data Design}
-\label{section:ai-data-design}
-\subsection{Data Sources and Collection}
-
-The primary dataset used in this project is the \textit{Fixed-Wing UAS Telemetry Benchmark (IDF\_DS)}, which contains telemetry data collected from 240 UAV flights. This dataset provides comprehensive flight information that captures both UAV motion and control behavior. The dataset includes the following key attributes:
+SantaTrail is designed as an integrated UAV training platform that combines a gamified game environment, realistic drone mission planning and simulation, and AI-based adaptive training. 
+The architecture consists of six main components:
 
 \begin{itemize}
-    \item Position data (navPos)
-    \item Velocity data (navVel)
-    \item Control inputs (rcCommand)
-    \item Attitude measurements (roll, pitch, yaw)
+    \item Game Environment (Unity): provides the Christmas-themed gamified interface where users interact with the system, view missions, plan routes, observe simulation, and receive feedback.
+    \item Mission Planning (QGroundControl): allows users to plan drone delivery routes by defining waypoints, altitude, and navigation paths on real-world terrain.
+    \item Drone Simulation (ArduPilot SITL): executes the planned mission in a simulated environment and generates telemetry data such as position, velocity, altitude, and flight behavior.
+    \item Communication Layer (MAVLink): exchanges mission commands and telemetry data between QGroundControl, ArduPilot SITL, and the SantaTrail system.
+    \item AI Module (Python Backend): handles mission content generation (LLM), adaptive difficulty recommendation (Contextual Bandit), training progression optimization (RL), and performance feedback.
+    \item Database: stores user profiles, mission data, performance history, telemetry logs, and AI training data.
 \end{itemize}
 
-In addition to the external dataset, the system also generates telemetry data from simulation runs using ArduPilot SITL. During each simulated mission, flight parameters such as position, velocity, altitude, and orientation are continuously recorded. This allows the system to collect dynamic data based on user interactions and training scenarios.
+These components work together through a closed feedback loop: the user plans and executes a mission then the system collects performance data then the AI module analyzes performance and generates or recommends the next mission then the user receives feedback and progresses.
 
-Before being used in the AI module, the collected data undergoes several preprocessing steps to ensure data quality and consistency. Data preprocessing consists of the following stages:
+\section{Software Design}
 
+The system operates through the SantaTrail gameplay loop, where each cycle represents one training mission.
+
+\textbf{Main Flow: Adaptive UAV Training Session:}
+
+\begin{enumerate}
+    \item \textbf{Mission Generation:} The AI module generates a mission letter using an LLM. The letter describes a child's delivery request, location context, and environmental hints. Mission metadata (terrain, difficulty, constraints) is assigned based on the user's current skill level.
+    
+    \item \textbf{Present Preparation:} The user selects and packs presents in the Unity game interface. Gift properties (weight, size) affect drone performance during the mission, introducing the concept of payload planning.
+    
+    \item \textbf{Route Planning:} The user plans a drone delivery route using QGroundControl on a real-world GIS terrain map. The user places waypoints, sets altitude, and designs a flight path while considering terrain, obstacles, restricted areas, and delivery targets.
+    
+    \item \textbf{Mission Execution (Simulation):} The planned mission is sent to ArduPilot SITL via MAVLink for execution. The simulation runs and generates telemetry data including drone position, velocity, altitude, trajectory, battery usage, and control inputs. The Unity environment visualizes the drone executing the delivery in real-time 3D.
+    
+    \item \textbf{Data Collection:} During and after the mission, the system collects performance data such as:
+    \begin{itemize}
+        \item Mission success or failure
+        \item Route efficiency (planned vs.\ actual path)
+        \item Delivery accuracy (distance to target)
+        \item Safety violations (altitude, restricted area, collision)
+        \item Completion time
+        \item Trajectory deviation
+    \end{itemize}
+    
+    \item \textbf{Performance Evaluation and Feedback:} The AI module processes the collected data and evaluates user performance. The system provides personalized feedback highlighting strengths and weaknesses. The user earns coins and Christmas spirit points based on performance.
+    
+    \item \textbf{Adaptive Next Mission:} Based on the user's performance history and current context, the Contextual Bandit model recommends a suitable difficulty level for the next mission. The LLM then generates a new mission letter matching that difficulty. Over time, Reinforcement Learning can optimize the long-term training progression policy.
+    
+    \item \textbf{Progression:} As the user improves, harder missions are unlocked. After completing all training missions, the user receives a certification and can enter free play mode.
+\end{enumerate}
+
+\section{AI and Data Design}
+
+SantaTrail uses three AI approaches, each serving a different role in the training system.
+
+\subsection{Data Sources and Collection}
+
+The system uses two data sources:
+
+\subsection*{A. System-Generated Data (Primary)}
+
+Collected from actual gameplay sessions in SantaTrail:
 \begin{itemize}
-    \item \textbf{Data Cleaning:} Removal of irrelevant or noisy attributes, such as system flags and non-essential environmental variables.
-    
-    \item \textbf{Feature Selection:} Retaining only behavior-relevant features, including position, velocity, control inputs, and attitude measurements.
-    
-    \item \textbf{Feature Engineering:} Transforming raw telemetry data into meaningful performance indicators, including: Trajectory deviation, Speed consistency, Control smoothness, Flight stability.
-    
-    \item \textbf{Normalization:} Scaling all features to a consistent range to improve model performance and prevent bias toward certain variables.
+    \item \textbf{Mission data:} mission parameters, difficulty, terrain, constraints.
+    \item \textbf{Telemetry data:} drone position, velocity, altitude, trajectory, battery, control inputs (from ArduPilot SITL via MAVLink).
+    \item \textbf{Performance data:} mission success, route efficiency, delivery accuracy, safety violations, completion time.
+    \item \textbf{User data:} skill level, mission history, progression, rewards earned.
+\end{itemize}
+
+Each mission produces a structured record:
+\[
+(\text{user\_context}, \text{mission\_action}, \text{performance\_reward})
+\]
+
+This data is used to train and update the Contextual Bandit and Reinforcement Learning (RL) models.
+
+\subsection*{B. Helper Dataset (Reference)}
+
+Based on existing UAV telemetry datasets (e.g., Fixed-Wing UAS Telemetry Benchmark) for:
+\begin{itemize}
+    \item Guiding data structure design and feature selection.
+    \item Validating that the system's telemetry collection captures meaningful flight behavior features.
+    \item Providing reference patterns for feature engineering.
+\end{itemize}
+
+This dataset is not used directly for model training but serves as a design reference.
+
+\subsection*{4.3.3 Data Preprocessing}
+
+Before being used in the AI module, collected data undergoes:
+\begin{itemize}
+    \item \textbf{Data Cleaning:} remove noise, incomplete records, and irrelevant attributes.
+    \item \textbf{Feature Selection:} select performance-relevant features (e.g., route efficiency, altitude deviation, safety score).
+    \item \textbf{Feature Engineering:} compute derived metrics:
+    \begin{itemize}
+        \item Path deviation (planned vs.\ actual route)
+        \item Altitude stability
+        \item Delivery accuracy (distance to target)
+        \item Speed consistency
+        \item Safety violation count
+    \end{itemize}
+    \item \textbf{Normalization:} scale features for consistent model input.
 \end{itemize}
 
 \subsection{Model Design}
-The system adopts a hybrid machine learning approach that combines both unsupervised and supervised learning techniques to analyze UAV flight behavior and evaluate user performance. This design is chosen to leverage the strengths of both approaches: unsupervised learning for discovering hidden patterns in flight data, and supervised learning for generating interpretable performance classifications.
-The AI module consists of two main components:
 
-\begin{itemize}
-    \item \textbf{K-Means Clustering}
-    K-Means clustering is applied to group UAV flight behaviors based on extracted features from telemetry data. This method enables the system to identify patterns without requiring predefined labels.
-    
-    \textbf{Purpose:}
-    Identify underlying flight behavior patterns
-    Group similar flight trajectories and control behaviors
-    Generate pseudo-labels for further supervised learning
-    
-    \textbf{Reason for Selection:}
-    Effective for handling unlabeled data
-    Computationally efficient and suitable for real-time or large-scale data
-    Well-suited for grouping behavior-based features in UAV flight analysis
-    \end{itemize}
+SantaTrail uses three AI approaches, each serving a different role in the training system.
 
+\textbf{Components of the Model:}
+
+\subsection*{4.3.1 AI Components}
+
+\subsubsection*{A. Large Language Model (LLM): Mission Content Generation}
+
+The Large Language Model (LLM) is responsible for generating mission content that makes each training session unique and contextually meaningful.
+
+The LLM generates:
 \begin{itemize}
-    \item \textbf{Random Forest Classification}
-    Random Forest is used as a supervised learning model to classify user performance based on the labeled data generated from the clustering process. The model outputs interpretable categories such as beginner, intermediate, and expert.
-    
-    \textbf{Purpose:}
-    Predict user skill level based on flight behavior
-    Provide structured and interpretable evaluation results
-    Support feedback generation for training improvement
-    
-    \textbf{Reason for Selection:}
-    High accuracy when working with structured (tabular) data
-    Robust to noise and less prone to overfitting
-    Provides reliable and interpretable results compared to more complex models
+    \item Mission letters: describing the child's delivery request, personal context, and environmental hints.
+    \item Mission scenario descriptions: providing narrative context for the delivery task.
+    \item Learning guidance and tips: explaining mission planning concepts relevant to the current task.
 \end{itemize}
 
-Training Process
-The training process integrates both clustering and classification to form a complete learning pipeline:
-Extract relevant features from the dataset and simulation data
-Apply K-Means clustering to group similar flight behaviors
-Assign cluster labels (e.g., Beginner, Intermediate, Expert) based on behavior characteristics
-Train the Random Forest model using the labeled dataset
-Validate model performance using evaluation metrics
-This approach allows the system to first discover behavior patterns and then use those patterns to train a predictive model for performance evaluation.
+\textbf{Input to the LLM:}
+\begin{itemize}
+    \item Mission difficulty level
+    \item Terrain type and location
+    \item User skill level
+    \item Mission constraints (e.g., weather, obstacles, time limit)
+\end{itemize}
 
-Model Improvement and Handling Poor Performance
-To ensure the reliability and robustness of the AI module, several strategies are considered if model performance is not satisfactory:
-Adjust feature selection to improve the quality of input data
-Tune model hyperparameters, such as the number of trees in the Random Forest
-Modify the number of clusters in K-Means to better represent behavior patterns
-Compare performance with baseline models, such as Logistic Regression, to ensure effectiveness
+\textbf{Output from the LLM:}
+\begin{itemize}
+    \item Generated mission letter text
+    \item Scenario description
+    \item Contextual hints for the user
+\end{itemize}
 
-Integration within the System
-The AI models are integrated into the backend of the system as part of the evaluation pipeline. After each simulation, telemetry data is processed and passed through the AI module. The clustering component first analyzes behavior patterns, and the classification model then predicts user performance levels. The results are used to generate feedback and are presented to the user through the frontend interface.
+\subsubsection*{B. Contextual Bandit: Adaptive Difficulty Recommendation}
+
+The Contextual Bandit model recommends the most suitable mission difficulty for each user based on their performance history.
+
+\textbf{Components:}
+\begin{itemize}
+    \item Context: user performance features extracted from mission data (e.g., average route efficiency, safety violation rate, completion rate, improvement trend).
+    \item Action: candidate difficulty levels or mission types.
+    \item Reward: a function based on mission success, user improvement, and engagement (e.g., not too easy, not too hard).
+\end{itemize}
+
+\textbf{Process:}
+\begin{enumerate}
+    \item After each mission, extract user performance features to form the context.
+    \item For each candidate difficulty level, predict the expected reward.
+    \item Select the difficulty with the highest expected reward.
+    \item Apply an exploration strategy (e.g., epsilon-greedy) to avoid always selecting the same difficulty.
+\end{enumerate}
+
+A prediction model (e.g., Linear Regression, Random Forest, or XGBoost) is used to estimate the expected reward for each candidate action.
+
+\subsubsection*{C. Reinforcement Learning (RL): Training Progression Optimization}
+
+Reinforcement Learning (RL) can be explored to optimize the long-term training progression policy. While the Contextual Bandit selects the next mission based on immediate context, RL considers the full sequence of missions and optimizes for long-term learning outcomes.
+
+\textbf{Components:}
+\begin{itemize}
+    \item State: user skill profile, mission history, current performance level.
+    \item Action: training decisions such as difficulty adjustment, mission type selection, or feedback strategy.
+    \item Reward: long-term learning improvement, certification readiness, and engagement retention.
+\end{itemize}
 
 \subsection{Evaluation}
 
-\noindent \textbf{Classification Metrics:}
+The evaluation of the AI module covers both the prediction accuracy and the adaptive decision quality.
+
+\textbf{LLM Evaluation:}
+
 \begin{itemize}
-    \setlength{\leftmargin}{1.5em}
-    \item \textbf{Accuracy:} Measures how correctly the model classifies pilot performance into categories (e.g., good, average, poor).
-    \item \textbf{Precision:} Evaluates how reliable the predicted performance labels are.
-    \item \textbf{Recall:} Measures the ability of the model to correctly identify all relevant performance cases.
-    \item \textbf{F1-score:} Provides a balanced measure between precision and recall.
+    \item \textbf{Mean Absolute Error (MAE):} Measures how close the predicted reward is to the actual reward.
+    
+    \item \textbf{Mission quality assessment:} evaluate whether generated missions are coherent, contextually appropriate, and match the requested difficulty level.
+    \item \textbf{Content diversity:} measure variation across generated mission letters to avoid repetitive content.
 \end{itemize}
 
-\noindent \textbf{Clustering Metrics:}
+\textbf{Contextual Bandit Evaluation:}
+
 \begin{itemize}
-    \setlength{\leftmargin}{1.5em}
-    \item \textbf{Cluster Consistency:} Evaluates how similar the data points are within the same cluster.
-    \item \textbf{Cluster Separation:} Measures how distinct different clusters are from each other.
-    \item \textbf{Interpretability:} Assesses whether the identified clusters represent meaningful flight behaviors.
+    \item \textbf{Mean Absolute Error (MAE):} Measures how close predicted reward is to actual reward.
+    \item \textbf{Mean Squared Error (MSE):} Measures average squared error, penalizing large prediction errors.
+    \item \textbf{Average Reward:} Average reward from selected missions, indicating decision quality.
+    \item \textbf{Cumulative Reward:} Total reward over time, showing improvement in decision-making.
+    \item \textbf{Regret:} Difference between obtained reward and best possible reward. Lower regret = better adaptation.
 \end{itemize}
+
+\textbf{RL Evaluation (Future):}
+
+\begin{itemize}
+    \item \textbf{Long-term user improvement:} whether users trained with RL-optimized progression show better skill development over time.
+    \item \textbf{Certification readiness rate:} percentage of users who reach certification level within a target number of missions.

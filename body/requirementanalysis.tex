@@ -1,27 +1,16 @@
 \chapter{Requirement Analysis}
 \label{chap:requirement-analysis}
 
-Requirement analysis is a critical phase in software development that ensures a clear understanding of what the system is expected to achieve. By identifying and refining requirements early in the development process, the project team can minimize risks, reduce implementation errors, and improve overall system quality. This phase focuses on understanding user needs, defining system functionalities, and establishing how different components of the system will interact. A well-defined requirement analysis helps ensure that the final system aligns with user expectations and project objectives.
-
-In this chapter, we present the requirement analysis process for the AI-based UAV training system. The analysis includes stakeholder identification, user stories, use case diagrams, and user interface design. These components collectively define how the system operates and interacts with users, ensuring a practical, efficient, and user-centered design.
-
-
 \section{Stakeholder Analysis}
 \label{section:stakeholder-analysis}
 
-Stakeholder analysis is an essential step in requirement analysis, as it identifies the key individuals or groups who interact with or are affected by the system. Understanding stakeholders’ needs and expectations ensures that the system is designed to meet real-world requirements and deliver meaningful value.
-For this project, the primary stakeholder is the beginner drone pilot, who serves as the main user of the system. Beginner drone pilots are individuals with little or no prior experience in UAV flight planning and operation. These users require a structured, safe, and interactive learning environment to develop fundamental skills without the risks associated with real-world drone usage.
+The primary stakeholder of SantaTrail is the beginner drone pilot, a user with little or no prior experience in UAV mission planning who needs a safe and engaging learning environment.
 
-The system is designed to support beginner users by providing mission planning tools through QGroundControl, realistic flight simulation using ArduPilot SITL, and an engaging visualization interface developed in Unity. In addition, the system integrates AI-based evaluation to analyze user performance and provide feedback.
+In SantaTrail, the system is designed to teach mission planning concepts in an engaging and progressive manner. The user completes a series of present delivery missions that gradually increase in difficulty, allowing them to build skills over time. The system supports this learning process through gamified, mission-based training that is integrated into a cohesive Christmas narrative, creating a more immersive experience. Additionally, the platform incorporates realistic UAV simulation by connecting missions to QGroundControl and ArduPilot SITL via MAVLink, enabling users to practice in an environment that closely mirrors real-world drone operations. To further enhance learning, AI-based adaptive training dynamically adjusts mission difficulty and content based on the user's performance. After each mission, the system provides detailed performance feedback, evaluating factors such as route efficiency, safety, delivery accuracy, and completion time, helping users identify areas for improvement and refine their skills.
 
-Furthermore, gamification elements such as adaptive training scenarios and a difficulty-normalized leaderboard are introduced to enhance user motivation and engagement. These features ensure that users can learn progressively while being fairly evaluated based on their skill level and training conditions.
-By focusing on the needs of beginner drone pilots, the system aims to deliver an accessible and effective training platform that promotes continuous learning and skill improvement.
 
 \section{User Stories and Use Cases}
 \label{section:user-stories-use-cases}
-User stories play an important role in defining system requirements from the perspective of end users. Instead of focusing on technical implementation, user stories describe what users need and why those needs are important. This approach ensures that the system development remains aligned with real-world usage and user expectations.
-
-In this project, user stories are developed based on the identified target users, including beginner drone pilots, students and researchers, and training institutions. These user stories define the core functionalities of the system, such as mission planning, simulation, AI-based evaluation, and performance monitoring.
 
 \begin{enumerate}
     \item As a beginner drone pilot, I want to learn how to plan a drone flight by setting waypoints in QGroundControl, so that I can understand flight planning concepts.
@@ -43,7 +32,7 @@ In this project, user stories are developed based on the identified target users
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.6\textwidth]{examples/use_case_pic.png}
+    \includegraphics[width=0.6\textwidth]{examples/uml.png}
     \caption{Use Case Diagram for the Drone Training System}
     \label{fig:use-case-diagram}
 \end{figure}
@@ -52,94 +41,131 @@ Use case diagram (Figure~\ref{fig:use-case-diagram}) illustrates the interaction
 
 \noindent \textbf{Actors:}
 \begin{itemize}
-    \item \textbf{Beginner Drone Pilot:} The primary user of the system. Beginner drone pilots use the system to learn how to plan flight missions, simulate and visualize drone behavior, receive performance feedback, and practice through training scenarios with different difficulty levels to progressively improve their skills.
+    \item \textbf{Beginner Drone Pilot:} The primary user of the system.
 \end{itemize}
 
 \noindent \textbf{Use Cases:}
 \begin{itemize}
-    \item \textbf{Plan Drone Flight:} The user creates a drone flight plan by defining mission parameters such as waypoints and flight paths. This allows the user to understand the fundamental concepts of UAV flight planning.
-    \item \textbf{Simulate Flight:} The system executes the planned mission in a simulated environment using ArduPilot SITL. This allows the user to test and validate their flight plan safely without requiring real UAV hardware.
-    \item \textbf{Visualize Flight in 3D:} The system provides a 3D visualization of the simulated flight, enabling the user to observe drone behavior such as movement, trajectory, and environmental interaction.
-    \item \textbf{Receive Feedback:} After each simulation, the system evaluates the user's flight performance and provides feedback to help improve planning skills.
-    \item \textbf{View Leaderboard:} The user can view their performance ranking compared to other users. This feature motivates users to improve their skills and track their progress over time.
-    \item \textbf{Select Training Scenario (Difficulty Levels):} The user selects or is assigned training scenarios with varying levels of difficulty. This enables progressive learning by matching training complexity with the user’s skill level.
-    
+    \item \textbf{Receive Mission Letter:} The user receives an AI-generated letter describing the delivery task, location, and environmental context.
+    \item \textbf{Select and Pack Presents:} The user chooses gifts with weight/size properties that affect drone performance.
+    \item \textbf{Plan Drone Delivery Route:} The user places waypoints on real-world terrain, sets altitude, and designs a flight path considering obstacles and safety.
+    \item \textbf{Execute Drone Mission (Simulation):} The system simulates the delivery using ArduPilot SITL and MAVLink; the user can observe the flight in Unity 3D.
+    \item \textbf{Receive Performance Feedback:} The user views a post-mission evaluation on route efficiency, delivery accuracy, safety, altitude control, and completion time.
+    \item \textbf{Select Training Scenario / Adaptive Difficulty:} The user selects a mission or receives an AI-recommended difficulty based on their performance history.
+    \item \textbf{Earn Rewards and Progress:} The user earns coins, Christmas spirit points, and unlocks harder missions.
+    \item \textbf{Receive Certification:} The user receives a certificate after completing all training missions.
+    \item \textbf{Enter Free Play Mode:} The user accesses continuous advanced missions after certification.
 \end{itemize}
 
 \section{User Interface Design}
 \label{section:user-interface-design}
-The interface is designed to be minimal and user-friendly, with a modern dark theme to reduce visual fatigue and improve focus during training. The platform mainly uses green accents to represent progress, success, and system feedback, which aligns with the concept of skill development and performance improvement. The interface is structured to guide users through the training workflow, from mission selection to simulation and evaluation. The following figures show the homepage, mission selection page, instruction page, settings page, and simulation interface.
+The interface supports the Christmas-themed gameplay while guiding users through the training workflow.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{examples/Homepage.png}
+    \includegraphics[width=0.8\textwidth]{examples/start_page.png}
+    \caption{Mockup of Start Page}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{examples/home_page_new.png}
     \caption{Mockup of the homepage of the application}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{examples/Mission.png}
-    \caption{Mockup of the mission planning interface}
+    \includegraphics[width=0.8\textwidth]{examples/letter.png}
+    \caption{Mockup of Letter Page}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{examples/Instruction.png}
-    \caption{Mockup of the instruction interface}
+    \includegraphics[width=0.8\textwidth]{examples/request.png}
+    \caption{Mockup of Mission Briefing}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{examples/Setting.png}
-    \caption{Mockup of the setting interface}
+    \includegraphics[width=0.8\textwidth]{examples/playing_game1.png}
+    \caption{Mockup of Simulation Interface on Unity 3D}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{examples/GameUi.png}
-    \caption{Mockup of the game UI interface}
+    \includegraphics[width=0.8\textwidth]{examples/playing_game2.png}
+    \caption{Mockup of Simulation Interface on Unity 3D}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{examples/report.png}
+    \caption{Mockup of Feedback and Results Page}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{examples/report_2.png}
+    \caption{Mockup of Feedback and Results Page}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{examples/report_3.png}
+    \caption{Mockup of Feedback and Results Page}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{examples/report_4.png}
+    \caption{Mockup of Feedback and Results Page}
 \end{figure}
 
 \noindent 1. Homepage:
 \begin{itemize}
-    \item Serves as the main entry point of the system.
-    \item Provides three primary options: Play, How to Play, and Settings.
-    \item The Play button allows users to continue their training missions.
-    \item The How to Play option provides guidance for beginners to understand the system and flight planning application (QGroundControl).
-    \item The Settings option allows users to configure application preferences.
-\end{itemize}
+    \item Main entry point with game title and Christmas visual design.
+    \item Options: Play, How to Play, Settings, About.
+    \end{itemize}
 
 \noindent 2. Mission Selection Page:
 \begin{itemize}
-    \item Allows users to select available training missions based on their progress.
-    \item Displays mission cards with mission title, description, and difficulty level.
-    \item Shows locked missions that require completion of previous tasks.
-    \item Provides user performance summary including number of missions completed, badges earned, and average score.
-    \item Includes a performance panel displaying detailed metrics such as efficiency, safety, and completion rate.
+    \item Displays available delivery missions based on user progress.
+    \item Each mission card shows title, description, difficulty, and terrain location.
+    \item Locked missions require completing previous tasks.
+    \item Shows performance summary: missions completed, coins, Christmas spirit progress, average score.
 \end{itemize}
 
-\noindent 3. Instruction (How to Play) Page:
+\noindent 3. Mission Briefing and Letter Page:
 \begin{itemize}
-    \item Provides step-by-step instructions for new users to start training.
-    \item Includes guidance on downloading and setting up QGroundControl.
-    \item Explains how to launch and connect to the simulator.
-    \item Guides users on how to plan missions by creating waypoints and defining flight paths.
-    \item Uses structured steps to improve clarity and ease of understanding.
+    \item Displays the AI-generated mission letter with the child's request, location, and environmental hints.
 \end{itemize}
 
-\noindent 4. Settings Page:
+\noindent 4. Present Packing Page:
 \begin{itemize}
-    \item Allows users to customize their training experience.
-    \item Provides toggle options such as sound effects, fullscreen mode, and notifications.
-    \item Includes a reset function to clear all mission progress and restart training.
-    \item Uses simple controls and clear labels to ensure ease of interaction.
+    \item Select and pack presents with weight/size properties.
+    \item Uses in-game coins to select gifts.
+    \item Gift selection affects drone performance during the mission.
 \end{itemize}
 
-\noindent 5. Simulation Interface (Unity):
+\noindent 5. Mission Planning Interface:
 \begin{itemize}
-    \item Provides a 3D environment for visualizing UAV flight behavior.
-    \item Displays the drone, terrain, and camera perspective in real-time.
-    \item Supports camera-follow functionality to track drone movement.
-    \item Integrates with MAVLink communication for real-time simulation data.
-    \item Enables users to observe flight performance safely without real-world risks.
+    \item Real-world GIS terrain map for route planning.
+    \item Place waypoints, set altitude, design flight path.
+    \item Shows terrain features, obstacles, restricted areas, and delivery targets.
+    \item Connected to QGroundControl workflow.
+\end{itemize}
+
+\noindent 6. Simulation Interface (Unity 3D):
+\begin{itemize}
+    \item 3D environment visualizing the drone delivery.
+    \item Real-time drone movement, terrain, and delivery targets.
+    \item Camera-follow functionality.
+    \item ArduPilot SITL with MAVLink integration.
+\end{itemize}
+
+\noindent 7. Feedback and Results Page:
+\begin{itemize}
+    \item Post-mission performance metrics: success, route efficiency, delivery accuracy, safety violations, altitude control, completion time.
+    \item Personalized feedback and improvement suggestions.
+    \item Coins earned, Christmas spirit gained, rewards/unlocks.
 \end{itemize}

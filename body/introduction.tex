@@ -4,57 +4,110 @@
 \section{Background}
 \label{section:background}
 
-Unmanned Aerial Vehicles (UAVs) are increasingly utilized in various domains such as surveillance, logistics, agriculture, and disaster management. As the adoption of UAV technology continues to expand, the demand for effective training systems that enable users to develop flight planning skills has become more critical. Flight planning is a fundamental aspect of UAV operation, involving the definition of waypoints, navigation paths, altitude, and mission parameters to ensure safe and efficient operation.
+Learning how to plan a safe and efficient drone mission is an important first step for beginner UAV pilots. Users must understand how to place waypoints, select altitude, design routes, and avoid unsafe areas before operating a real drone. Poor mission planning can lead to failed deliveries, wasted battery, collisions, or safety incidents, especially in complex terrain with obstacles, elevation changes, or restricted zones.
 
-Existing tools such as QGroundControl provide comprehensive mission planning capabilities, while ArduPilot Software-in-the-Loop (SITL) enables realistic simulation of UAV behavior without requiring physical hardware. However, these tools are primarily designed for experienced users and can be challenging for beginners to learn due to their complexity and lack of guided learning support.
+Existing tools such as QGroundControl and ArduPilot SITL provide powerful mission planning and simulation capabilities. However, these tools are designed for experienced operators. Beginners often struggle with the interface complexity, unfamiliar parameters, and lack of guided learning. For example, a new user may not understand why a planned route causes altitude violations or why the drone fails to reach a delivery point — and the tool provides no structured explanation or feedback to help them learn.
 
-Furthermore, traditional UAV training systems do not incorporate intelligent mechanisms to analyze user behavior or provide personalized feedback. As a result, learners often struggle to identify their weaknesses and improve their skills efficiently. Recent advancements in artificial intelligence (AI) and gamification technologies present an opportunity to enhance UAV training systems by making them more adaptive, engaging, and user-centered. Integrating AI-driven behavior analysis with simulation platforms and gamified environments can significantly improve the learning experience for beginner drone pilots.
+On the other hand, some drone training systems use gamified or virtual environments to make learning more engaging. However, many of these systems do not use real-world terrain, do not follow real drone mission planning workflows, and do not integrate real communication protocols such as MAVLink. This creates a gap between what users practice in the game and what they actually need to do when operating a real drone.
+
+In addition, most training systems provide static missions with fixed difficulty. They do not adapt based on user performance. A mission that is too easy wastes time; a mission that is too hard discourages the learner. Recent AI techniques such as Large Language Models (LLMs), Contextual Bandits, and Reinforcement Learning (RL) create an opportunity to generate personalized missions and adjust difficulty dynamically based on how the user performs.
+
+This project proposes SantaTrail, a gamified UAV mission planning training system that addresses these gaps by combining real-world GIS terrain, realistic drone workflow (QGroundControl with ArduPilot SITL and MAVLink), Christmas-themed gameplay, and AI-based adaptive training into a single beginner-friendly platform.
 
 
 \section{Problem Statement}
 \label{section:problem-statement}
 
-Despite the availability of advanced UAV simulation and mission planning tools, beginner users face several challenges when learning how to plan drone missions effectively. The complexity of existing systems, combined with the lack of structured guidance, makes it difficult for users to understand proper flight planning techniques.
+Although existing UAV mission planning and simulation tools are powerful, beginner drone pilots still face several difficulties when learning how to plan and evaluate drone missions. Tools such as QGroundControl and ArduPilot SITL are designed mainly for mission execution and technical simulation rather than structured learning. As a result, beginners may struggle to understand how to create safe and efficient flight paths, how mission parameters affect drone behavior, and how to evaluate the quality of their planned missions.
 
-In addition, current training approaches do not utilize user interaction and telemetry data to analyze learning behavior or assess skill levels. Consequently, all users are exposed to the same training scenarios regardless of their individual capabilities, leading to inefficient learning and reduced engagement.
+Another issue is that many current drone training systems are not sufficiently realistic or integrated with real drone workflows. Some systems provide gamified or virtual training, but they often do not use real-world terrain data, real mission planning processes, or drone control protocols such as MAVLink. This creates a gap between training in a virtual environment and applying the learned skills to real UAV operations.
 
-Another limitation is the absence of fair performance comparison mechanisms. Since training environments may vary in difficulty, traditional leaderboard systems cannot accurately reflect user performance across different conditions.
+In addition, most training systems provide static missions or fixed difficulty levels. They do not adapt the learning experience based on user performance, learning progress, or mission outcomes. Without adaptive AI support, all users may receive the same type of training regardless of their current ability. This can make training either too easy for advanced learners or too difficult for beginners, reducing both learning effectiveness and motivation.
 
-Therefore, there is a need for an intelligent UAV training system that can:
+There is also a lack of meaningful feedback. If users complete missions under different terrain conditions, route complexity, or mission difficulty, simple score-based leaderboards may not accurately represent user skill. A fair training system should consider task difficulty when evaluating performance.
+
+
+Therefore, there is a need for a UAV training system that can:
 
 \begin{itemize}
-    \item Analyze user behavior during flight planning and simulation.
-    \item Classify users into different skill levels using machine learning.
-    \item Adapt training scenarios based on individual user performance.
-    \item Provide meaningful and personalized feedback.
-    \item Ensure fair performance comparison through a difficulty-normalized leaderboard.
-    \item Enhance user motivation through gamification.
+    \item Provide a beginner-friendly and gamified environment for learning drone mission planning.
+    \item Integrate real-world terrain and realistic UAV simulation to improve training relevance.
+    \item Support real drone mission planning workflow and communication protocol integration.
+    \item Collect and analyze user performance data from training sessions.
+    \item Use AI techniques to generate or recommend adaptive training missions based on user ability.
+    \item Provide personalized feedback to help users understand and improve their performance.
 \end{itemize}
 
 \section{Solution Overview}
 \label{section:solution-overview}
 
-This project proposes an AI-driven UAV training system that integrates mission planning, simulation, machine learning, and gamification into a unified learning platform. The system focuses on helping beginner users learn how to plan UAV flight missions effectively through guided interaction and adaptive training.
+SantaTrail is a gamified UAV mission planning training system built around a Christmas-themed drone delivery story. The player takes the role of an elf assistant helping Santa deliver presents using a drone, because Santa's reindeer can no longer fly due to a lack of Christmas spirit. Through this narrative, users learn real drone mission planning concepts in an engaging and structured way.
 
-Users interact with QGroundControl to learn and practice flight planning by defining waypoints, altitude, and navigation paths. The planned missions are then executed in a simulated environment using ArduPilot SITL, allowing users to observe the outcomes of their planning decisions in a safe and controlled setting. A gamified interface developed in Unity enhances visualization and engagement by presenting the simulation in an interactive environment.
+The core gameplay loop follows a sequence of stages: receive letter, select gift, pack, plan mission, fly drone, evaluate, reward, and progress.
 
-During simulation, the system collects telemetry and user interaction data, including flight trajectory, velocity, and control behavior. Machine learning techniques are applied to analyze this data, K-Means clustering is used to identify patterns in user behavior, and Random Forest classification is used to categorize users into different skill levels.
-
-Based on the classification results, the system dynamically generates adaptive training scenarios with varying levels of difficulty. In addition, a difficulty-normalized leaderboard is introduced to ensure fair comparison of user performance across different training conditions, enabling users to compete and track progress meaningfully.
-
-\subsection{Features}
-\label{subsection:features}
+Each mission begins with an AI-generated letter describing a child's delivery request. The player selects and packs presents (which affect drone performance through weight and size), then plans a delivery route on a real-world GIS terrain map by placing waypoints, setting altitude, and considering obstacles and safety constraints. The mission is then simulated using ArduPilot SITL with MAVLink communication, and the player observes the drone executing the route in a Unity 3D environment. After the mission, the system evaluates performance and provides feedback on route efficiency, delivery accuracy, safety, and completion time. The player earns coins and Christmas spirit points, unlocking harder missions as they improve.
 
 \begin{itemize}
-    \item \textbf{Guided Flight Planning Training:} Users learn how to plan UAV missions using QGroundControl, including waypoint definition, altitude setting, and route design.
-    \item \textbf{UAV Simulation Environment:} Missions are executed using ArduPilot SITL to simulate realistic UAV behavior without requiring physical drones.
-    \item \textbf{Gamified Visualization Interface:} A Unity-based interface provides interactive visualization and game-like elements to improve engagement and motivation.
-    \item \textbf{User Behavior Data Collection:} The system collects telemetry data such as position, velocity, trajectory deviation, and control inputs during simulation.
-    \item \textbf{Behavior Analysis and Classification:} Machine learning models are used to analyze user behavior, where K-Means clustering identifies behavior patterns and Random Forest classifies user skill levels.
-    \item \textbf{Adaptive Training Generation:} Training scenarios are dynamically adjusted based on user skill level to provide appropriate difficulty and learning progression.
-    \item \textbf{Difficulty-Normalized Leaderboard:} A leaderboard system normalizes performance scores based on task difficulty to ensure fair comparison among users.
-    \item \textbf{Personalized Feedback System:} Users receive feedback on performance metrics such as flight stability, trajectory accuracy, and mission efficiency.
+    \item \textbf{Unity:} for the gamified 3D training environment and visualization.
+    \item \textbf{Real-world GIS terrain:} so missions take place in realistic spatial conditions.
+    \item \textbf{QGroundControl:} for realistic UAV mission planning workflow.
+    \item \textbf{ArduPilot SITL:} for drone behavior simulation without physical hardware.
+    \item \textbf{MAVLink:} for mission and telemetry data exchange.
+    \item \textbf{AI (LLM, Contextual Bandit, and RL):} for mission generation, adaptive difficulty recommendation, and long-term training optimization.
 \end{itemize}
+
+After completing all training missions, the user receives a certification indicating readiness for real-world drone operation and can unlock a free play mode with continuous advanced challenges.
+
+The system integrates:
+
+\subsection{Gameplay Features}
+\label{subsection:Gameplay Features}
+
+\begin{itemize}
+    \item \textbf{Christmas-Themed Drone Delivery Gameplay:} Players take the role of a trainee drone pilot helping Santa deliver presents using a UAV.
+    \item \textbf{Present Packing Task:} Players prepare presents before delivery missions. This activity introduces the mission objective and connects the gameplay story with the drone delivery task.
+    \item \textbf{Present Delivery Missions:} Players complete missions by delivering presents to target locations such as houses or checkpoints in the virtual environment.
+    \item \textbf{Mission Challenges:} The game includes challenges such as reaching delivery targets, completing missions within time limits, avoiding unsafe areas, and maintaining efficient routes.
+    \item \textbf{Scoring and Rewards:} Players receive scores, rewards, or progress indicators based on mission success, delivery accuracy, route efficiency, safety, and completion time.
+    \item \textbf{Progression System:} The game starts with simple missions and gradually unlocks more complex scenarios as the player improves.
+\end{itemize}
+
+
+\subsection{UAV Training Features}
+\label{subsection:UAV Training Features}
+
+\begin{itemize}
+    \item \textbf{Drone Mission Planning:} Players learn to plan UAV missions by selecting waypoints, setting routes, and preparing delivery paths before simulation.
+    \item \textbf{Waypoint and Route Design Practice:} The system allows users to practice basic mission planning concepts such as waypoint placement, route structure, and path efficiency.
+    \item \textbf{Altitude and Safety Awareness:} Missions introduce altitude limits, terrain awareness, unsafe zones, and other safety-related constraints to support safe mission planning.
+    \item \textbf{Real-World Terrain-Based Environment:} The training environment uses real-world GIS terrain or map-based data to make the mission context more realistic.
+    \item \textbf{Post-Mission Performance Feedback:} After completing a mission, users receive feedback on mission success, route efficiency, flight safety, trajectory accuracy, and completion performance.
+\end{itemize}
+
+
+\subsection{AI and Adaptive Learning Features}
+\label{subsection:AI and Adaptive Learning Features}
+
+\begin{itemize}
+    \item \textbf{AI-Assisted Mission Generation:} A Large Language Model can be used to generate mission descriptions, training objectives, and delivery scenarios based on the user's skill level.
+    \item \textbf{Adaptive Mission Recommendation:} A Contextual Bandit approach can recommend suitable mission difficulty by considering the user's previous performance and current training context.
+    \item \textbf{Reinforcement Learning-Based Adaptation:} Reinforcement Learning can be explored to optimize long-term training progression and difficulty adjustment.
+    \item \textbf{Personalized Learning Feedback:} The system can provide feedback that matches the user's weaknesses, such as inefficient route planning, unsafe altitude selection, or poor mission completion.
+    \item \textbf{Skill Progress Tracking:} The system records user performance over multiple missions to support progress monitoring and adaptive training.
+\end{itemize}
+
+
+\subsection{AI and Adaptive Learning Features}
+\label{subsection:AI and Adaptive Learning Features}
+
+\begin{itemize}
+    \item \textbf{QGroundControl Integration:} The system supports UAV mission planning using QGroundControl to reflect a realistic drone mission workflow.
+    \item \textbf{ArduPilot SITL Simulation:} Drone missions are simulated using ArduPilot SITL, allowing users to observe drone behavior without requiring physical drone hardware.
+    \item \textbf{MAVLink Communication:} MAVLink is used to exchange mission and telemetry data between the drone simulation components and the SantaTrail system.
+    \item \textbf{Unity-Based Visualization:} Unity is used to create the interactive game environment, visualize missions, and present drone movement, terrain, scoring, and feedback.
+    \item \textbf{Mission and Telemetry Data Collection:} The system collects data such as drone position, route, completion time, mission success, altitude violations, and other performance metrics for analysis and feedback.
+\end{itemize}
+
 
 \section{Target User}
 \label{section:target-user}
@@ -69,12 +122,25 @@ The system focuses primarily on beginner users, providing guided learning, adapt
 \label{section:terminology}
 
 \begin{description}
-    \item[Unmanned Aerial Vehicle (UAV)] An aircraft that operates without an onboard human pilot.
-    \item[ArduPilot SITL] A simulation framework that enables drone control software to run without physical hardware.
-    \item[QGroundControl] A ground control station software used for planning and managing drone missions.
-    \item[Unity] A cross-platform game engine used to develop the simulation environment.
-    \item[MAVLink] A lightweight communication protocol used for drone control and telemetry exchange.
-    \item[K-Means Clustering] An unsupervised machine learning algorithm used to group similar data points based on behavior patterns.
-    \item[Random Forest] A supervised machine learning algorithm used for classification based on multiple decision trees.
-    \item[Difficulty-Normalized Leaderboard] A ranking system that adjusts scores based on task difficulty to ensure fair comparison among users.
+    \item[Unmanned Aerial Vehicle (UAV)] An aircraft that operates without an onboard human pilot and can be controlled remotely or autonomously through a planned mission.
+    \item[QGroundControl]
+    An open-source ground control station software used for planning, configuring, and monitoring UAV missions.
+    \item[ArduPilot SITL]
+    Software-in-the-Loop simulation for ArduPilot that allows drone control software to run in a simulated environment without physical drone hardware.
+    \item[MAVLink]
+    A lightweight communication protocol used for communication between drones, ground control stations, and related UAV systems.
+    \item[Unity]
+    A cross-platform game engine used to develop interactive 3D environments, simulations, and gamified applications.
+    \item[GIS Terrain]
+    Geographic Information System-based terrain or map data used to represent real-world locations and environmental conditions.
+    \item[Gamification]
+    The use of game-like elements such as missions, points, challenges, progression, and leaderboards to increase motivation and engagement.
+    \item[Large Language Model (LLM)]
+    An AI model capable of understanding and generating natural language, used in this project for mission generation, explanations, and training guidance.
+    \item[Contextual Bandit]
+    A machine learning approach that selects actions based on context and feedback, used to recommend suitable mission difficulty or training scenarios.
+    \item[Reinforcement Learning (RL)]
+    A machine learning method where an agent learns to make decisions by receiving rewards or penalties from interactions with an environment.
+    \item[Adaptive Training]
+    A training approach that adjusts mission difficulty, content, or feedback based on the user’s skill level and performance.
 \end{description}
